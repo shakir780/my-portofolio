@@ -11,6 +11,7 @@ import IMG6 from '../../Assets/portfolio6.jpg'
 import IMG7 from '../../Assets/portofolio6.png'
 import IMG8 from '../../Assets/portfolio7.png'
 import IMG9 from '../../Assets/portfolio8.png'
+import IMG10 from '../../Assets/portfolio9.png'
 const Portfolio = () => {
   const theme = useContext(ThemeContext)
   const darkMode=theme.state.darkMode;
@@ -61,8 +62,14 @@ const Portfolio = () => {
     { id: 7,
       img: IMG9,
       title:"Flex-gym",
-      github:"https://github.com/shakir780/Affinite-Restaurant",
-      demo: "https://github.com/shakir780/flex-gym",
+      github:"https://github.com/shakir780/flex-gym",
+      demo: "https://flex-gym-olive.vercel.app/",
+    },
+    { id: 8,
+      img: IMG9,
+      title:"Salesso-Dashboard",
+      github:"https://github.com/shakir780/PersonalDashboard",
+      demo: "https://salesso-dashboard.vercel.app/",
     },
     
   ];
