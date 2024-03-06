@@ -14,6 +14,7 @@ header {
   display: flex;
   gap: 1.2rem;
   justify-content: center;
+  align-items: center;
 }
 .header__socials {
   display: flex;
@@ -69,5 +70,11 @@ header {
   .header__socials,
   .scroll__down {
     display: none;
+  }
+  .me {
+    left: calc(50% - 10rem);
+  }
+  .cta {
+    flex-direction: column;
   }
 }

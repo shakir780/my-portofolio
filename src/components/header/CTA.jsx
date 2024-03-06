@@ -5,7 +5,6 @@ import { ThemeContext } from "../../context";
 const CTA = () => {
   const theme = useContext(ThemeContext);
   const darkMode = theme.state.darkMode;
-  const MouseEnter = () => {};
   return (
     <div className="cta">
       <a

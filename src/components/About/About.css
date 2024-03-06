@@ -82,6 +82,7 @@
   .about__cards {
     grid-template-columns: 1fr;
     gap: 1rem;
+    padding: 0px 20px;
   }
   .about__content {
     text-align: center;
