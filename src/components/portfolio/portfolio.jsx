@@ -4,12 +4,8 @@ import "./portfolio.css";
 import { ThemeContext } from "../../context";
 import IMG1 from "../../Assets/shaks-estate.png";
 import IMG2 from "../../Assets/alwataniyaplast.png";
-import IMG3 from "../../Assets/portfolio3.jpg";
-import IMG4 from "../../Assets/portfolio4.jpg";
-import IMG5 from "../../Assets/portfolio5.png";
-import IMG6 from "../../Assets/portfolio6.jpg";
 import IMG7 from "../../Assets/portofolio6.png";
-import IMG8 from "../../Assets/portfolio7.png";
+import IMG8 from "../../Assets/marlian.png";
 import IMG9 from "../../Assets/portfolio8.png";
 import IMG10 from "../../Assets/portfolio9.png";
 const Portfolio = () => {
@@ -21,8 +17,8 @@ const Portfolio = () => {
       id: 1,
       img: IMG8,
       title: "Marlian Clothing(E-commerce)",
-      github: "https://github.com/shakir780/Marlian-Clothing",
-      demo: "https://marlian-clothing.netlify.app/",
+      github: "https://github.com/shakir780/Marlian-Remake-",
+      demo: "https://marlian-clothing.onrender.com",
     },
     {
       id: 2,
