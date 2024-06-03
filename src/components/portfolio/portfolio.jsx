@@ -8,6 +8,8 @@ import IMG7 from "../../Assets/portofolio6.png";
 import IMG8 from "../../Assets/marlian.png";
 import IMG9 from "../../Assets/portfolio8.png";
 import IMG10 from "../../Assets/portfolio9.png";
+import IMG11 from "../../Assets/TowImg.png";
+import IMG12 from "../../Assets/washville.png";
 const Portfolio = () => {
   const theme = useContext(ThemeContext);
   const darkMode = theme.state.darkMode;
@@ -55,6 +57,20 @@ const Portfolio = () => {
       title: "Salesso-Dashboard",
       github: "https://github.com/shakir780/PersonalDashboard",
       demo: "https://salesso-dashboard.vercel.app/",
+    },
+    {
+      id: 9,
+      img: IMG11,
+      title: "Speedy Tow",
+      github: "https://github.com/shakir780/towingCompany",
+      demo: "https://speedy-tow.vercel.app/",
+    },
+    {
+      id: 10,
+      img: IMG12,
+      title: "WashVille",
+      github: "https://github.com/shakir780/washville",
+      demo: "https://washvillee.vercel.app/",
     },
   ];
 
