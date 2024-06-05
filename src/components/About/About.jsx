@@ -3,8 +3,48 @@ import ME from "../../Assets/me-about.png";
 import { FaAward } from "react-icons/fa";
 import { FiUsers } from "react-icons/fi";
 import { VscFolderLibrary } from "react-icons/vsc";
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { ThemeContext } from "../../context";
+
+const AboutCard = ({ darkMode, icon, title, description }) => {
+  const [hovered, setHovered] = useState(false);
+
+  const cardStyle = {
+    backgroundColor: darkMode
+      ? hovered
+        ? "transparent"
+        : "#2c2c6c"
+      : hovered
+      ? "transparent"
+      : "#47474b",
+    border: darkMode
+      ? hovered
+        ? "1px solid white"
+        : "1px solid transparent"
+      : hovered
+      ? "1px solid black"
+      : "1px solid transparent",
+
+    color: darkMode ? "white" : "black",
+    borderRadius: "10px",
+    transition: "background-color 0.3s",
+  };
+
+  return (
+    <article
+      style={cardStyle}
+      className="about__card"
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+    >
+      <span style={{ stroke: darkMode ? "white" : "black" }}>{icon}</span>
+      <h5>{title}</h5>
+      <small style={{ color: darkMode ? "white" : "black" }}>
+        {description}
+      </small>
+    </article>
+  );
+};
 
 const About = () => {
   const theme = useContext(ThemeContext);
@@ -35,45 +75,24 @@ const About = () => {
         </div>
         <div className="about__content">
           <div className="about__cards">
-            <article
-              style={{ backgroundColor: darkMode && "#2c2c6c" }}
-              className="about__card"
-            >
-              <FaAward
-                style={{ color: darkMode && "#4db5ff" }}
-                className="about__icon"
-              />
-              <h5 style={{ color: darkMode && "white" }}>Experience</h5>
-              <small style={{ color: darkMode && "white" }}>
-                3+ Years Working
-              </small>
-            </article>
-            <article
-              style={{ backgroundColor: darkMode && "#2c2c6c" }}
-              className="about__card"
-            >
-              <FiUsers
-                style={{ color: darkMode && "#4db5ff" }}
-                className="about__icon"
-              />
-              <h5 style={{ color: darkMode && "white" }}>Clients</h5>
-              <small style={{ color: darkMode && "white" }}>
-                20+ Worldwide
-              </small>
-            </article>
-            <article
-              style={{ backgroundColor: darkMode && "#2c2c6c" }}
-              className="about__card"
-            >
-              <VscFolderLibrary
-                style={{ color: darkMode && "#4db5ff" }}
-                className="about__icon"
-              />
-              <h5 style={{ color: darkMode && "white" }}>Projects</h5>
-              <small style={{ color: darkMode && "white" }}>
-                20+ projects completed
-              </small>
-            </article>
+            <AboutCard
+              darkMode={darkMode}
+              icon={<FaAward />}
+              title="Experience"
+              description="3+ Years Working"
+            />
+            <AboutCard
+              darkMode={darkMode}
+              icon={<FiUsers />}
+              title="Clients"
+              description="20+ Worldwide"
+            />
+            <AboutCard
+              darkMode={darkMode}
+              icon={<VscFolderLibrary />}
+              title="Projects"
+              description="20+ projects completed"
+            />
           </div>
           <p
             style={{ color: darkMode && "white" }}

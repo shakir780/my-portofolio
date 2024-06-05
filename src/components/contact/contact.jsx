@@ -6,6 +6,69 @@ import React, { useRef, useContext } from "react";
 
 import { ThemeContext } from "../../context";
 import emailjs from "emailjs-com";
+import { useState } from "react";
+
+const ContactOption = ({
+  darkMode,
+  index,
+  hoveredIndex,
+  setHoveredIndex,
+  icon: Icon,
+  title,
+  subtitle,
+  link,
+  linkText,
+}) => {
+  const handleMouseEnter = () => {
+    setHoveredIndex(index);
+  };
+
+  const handleMouseLeave = () => {
+    setHoveredIndex(null);
+  };
+
+  const styles = {
+    backgroundColor: darkMode
+      ? hoveredIndex === index
+        ? "transparent"
+        : "#2c2c6c"
+      : hoveredIndex === index
+      ? "transparent"
+      : "#47474b",
+    borderColor: darkMode
+      ? hoveredIndex === index
+        ? "white"
+        : "transparent"
+      : hoveredIndex === index
+      ? "black"
+      : "darkgray",
+    color: darkMode ? "white" : "black",
+  };
+
+  return (
+    <article
+      style={styles}
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
+      className="contact__option"
+    >
+      <Icon
+        style={{ color: darkMode ? "white" : "black" }}
+        className="contact__option-icon"
+      />
+      <h4 style={{ color: darkMode ? "white" : "black" }}>{title}</h4>
+      <h5 style={{ color: darkMode ? "white" : "black" }}>{subtitle}</h5>
+      <a
+        style={{ color: darkMode ? "#4db5ff" : "black" }}
+        href={link}
+        target="_blank"
+        rel="noreferrer"
+      >
+        {linkText}
+      </a>
+    </article>
+  );
+};
 const Contact = () => {
   const theme = useContext(ThemeContext);
   const darkMode = theme.state.darkMode;
@@ -21,6 +84,33 @@ const Contact = () => {
     );
     e.target.reset();
   };
+
+  const [hoveredIndex, setHoveredIndex] = useState(null);
+  const contactOptions = [
+    {
+      icon: MdOutlineEmail,
+      title: "Email",
+      subtitle: "Kamalshakir@hotmail.com",
+      link: "mailto:Kamalshakir@ymail.com",
+      linkText: "Send a message",
+    },
+    {
+      icon: RiMessengerLine,
+      title: "Messenger",
+      subtitle: "Shakir Kamal",
+      link: "https://web.facebook.com/profile.php?id=61560641724719",
+      linkText: "Send a message",
+    },
+    {
+      icon: BsWhatsapp,
+      title: "WhatsApp",
+      subtitle: "+2349129969498",
+      link: `https://api.whatsapp.com/send?phone=+2349129969498&text=${encodeURIComponent(
+        "Hello! I am interested in your web development services and would like to discuss a project with you"
+      )}`,
+      linkText: "Send a message",
+    },
+  ];
   return (
     <section id="contact">
       <h5 style={{ color: darkMode && "white" }}>Get In Touch</h5>
@@ -28,62 +118,20 @@ const Contact = () => {
 
       <div className="container contact__container">
         <div className="contact__options">
-          <article
-            style={{ backgroundColor: darkMode && "#2c2c6c" }}
-            className="contact__option"
-          >
-            <MdOutlineEmail
-              style={{ color: darkMode && "white" }}
-              className="contact__option-icon"
+          {contactOptions.map((option, index) => (
+            <ContactOption
+              key={index}
+              index={index}
+              hoveredIndex={hoveredIndex}
+              setHoveredIndex={setHoveredIndex}
+              darkMode={darkMode}
+              icon={option.icon}
+              title={option.title}
+              subtitle={option.subtitle}
+              link={option.link}
+              linkText={option.linkText}
             />
-            <h4 style={{ color: darkMode && "white" }}>Email</h4>
-            <h5 style={{ color: darkMode && "white" }}>
-              Kamalshakir@hotmail.com
-            </h5>
-            <a
-              style={{ color: darkMode && "#4db5ff" }}
-              href="mailto:Kamalshakir@ymail.com"
-              target="_blank"
-            >
-              Send a message
-            </a>
-          </article>
-          <article
-            style={{ backgroundColor: darkMode && "#2c2c6c" }}
-            className="contact__option"
-          >
-            <RiMessengerLine
-              style={{ color: darkMode && "white" }}
-              className="contact__option-icon"
-            />
-            <h4 style={{ color: darkMode && "white" }}>Messenger</h4>
-            <h5 style={{ color: darkMode && "white" }}>Shakir Kamal</h5>
-            <a
-              style={{ color: darkMode && "#4db5ff" }}
-              href="https://www.facebook.com/shakir.kamal.16"
-              target="_blank"
-            >
-              Send a message
-            </a>
-          </article>
-          <article
-            style={{ backgroundColor: darkMode && "#2c2c6c" }}
-            className="contact__option"
-          >
-            <BsWhatsapp
-              style={{ color: darkMode && "white" }}
-              className="contact__option-icon"
-            />
-            <h4 style={{ color: darkMode && "white" }}>Whatssap</h4>
-            <h5 style={{ color: darkMode && "white" }}>+12345678</h5>
-            <a
-              style={{ color: darkMode && "#4db5ff" }}
-              href="https://api.whatsapp.com/send?phone=+201119652164"
-              target="_blank"
-            >
-              Send a message
-            </a>
-          </article>
+          ))}
         </div>
         {/**End of Contact Options */}
         <form ref={form} onSubmit={sendEmail}>

@@ -10,6 +10,80 @@ import IMG9 from "../../Assets/portfolio8.png";
 import IMG10 from "../../Assets/portfolio9.png";
 import IMG11 from "../../Assets/TowImg.png";
 import IMG12 from "../../Assets/washville.png";
+import { useState } from "react";
+const PortfolioItem = ({
+  darkMode,
+  item,
+  isHovered,
+  handleMouseEnter,
+  handleMouseLeave,
+}) => {
+  const { id, img, title, github, demo } = item;
+
+  const styles = {
+    backgroundColor: darkMode
+      ? isHovered
+        ? "transparent"
+        : "#2c2c6c"
+      : isHovered
+      ? "transparent"
+      : "#47474b",
+    borderColor: darkMode
+      ? isHovered
+        ? "white"
+        : "transparent"
+      : isHovered
+      ? "black"
+      : "darkgray",
+    color: darkMode ? "white" : "black",
+  };
+
+  const buttonStyle = {
+    backgroundColor: darkMode ? "#4db5ff" : "#47474b",
+    color: darkMode ? "#1f1f38" : "white",
+  };
+
+  const linkStyle = {
+    backgroundColor: darkMode ? "#4db5ff" : "#47474b",
+    color: darkMode ? "#1f1f38" : "white",
+  };
+
+  return (
+    <article
+      style={styles}
+      onMouseEnter={() => handleMouseEnter(id)}
+      onMouseLeave={handleMouseLeave}
+      className="portfolio__item"
+      key={id}
+    >
+      <div className="portfolio__item-image">
+        <img src={img} alt={title} />
+      </div>
+      <h3 style={{ color: darkMode ? "white" : "black" }}>{title}</h3>
+      <div className="portfolio__item-cta">
+        <a
+          style={buttonStyle}
+          href={github}
+          className="btn btn-primary"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          GitHub
+        </a>
+        <a
+          style={linkStyle}
+          href={demo}
+          className="btn btn-primary"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Live Demo
+        </a>
+      </div>
+    </article>
+  );
+};
+
 const Portfolio = () => {
   const theme = useContext(ThemeContext);
   const darkMode = theme.state.darkMode;
@@ -74,6 +148,15 @@ const Portfolio = () => {
     },
   ];
 
+  const [hoveredItemId, setHoveredItemId] = useState(null);
+
+  const handleMouseEnter = (id) => {
+    setHoveredItemId(id);
+  };
+
+  const handleMouseLeave = () => {
+    setHoveredItemId(null);
+  };
   return (
     <section id="portfolio">
       <h5 style={{ color: darkMode && "white" }}>My Recent Work</h5>
@@ -86,45 +169,16 @@ const Portfolio = () => {
       </h2>
 
       <div className="container portfolio__container">
-        {data.map(({ id, img, title, github, demo }) => {
-          return (
-            <article
-              style={{ backgroundColor: darkMode && "#2c2c6c" }}
-              key={id}
-              className="portfolio__item"
-            >
-              <div className="portfolio__item-image">
-                <img src={img} alt={title} />
-              </div>
-              <h3 style={{ color: darkMode && "white" }}>{title}</h3>
-              <div className="portfolio__item-cta">
-                <a
-                  style={{
-                    backgroundColor: darkMode && "#2c2c6c",
-                    color: "white",
-                    borderColor: darkMode && "#4db5ff",
-                  }}
-                  href={github}
-                  className="btn btn-primary"
-                  target="_blank"
-                >
-                  GitHub
-                </a>
-                <a
-                  style={{
-                    backgroundColor: darkMode && "#4db5ff",
-                    color: darkMode && "#1f1f38",
-                  }}
-                  href={demo}
-                  className="btn btn-primary"
-                  target="_blank"
-                >
-                  Live Demo
-                </a>
-              </div>
-            </article>
-          );
-        })}
+        {data.map((item) => (
+          <PortfolioItem
+            key={item.id}
+            darkMode={darkMode}
+            item={item}
+            isHovered={hoveredItemId === item.id}
+            handleMouseEnter={handleMouseEnter}
+            handleMouseLeave={handleMouseLeave}
+          />
+        ))}
       </div>
     </section>
   );

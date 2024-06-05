@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { ThemeContext } from "../../context";
 import "./experience.css";
 import { BsPatchCheckFill } from "react-icons/bs";
@@ -20,6 +20,46 @@ const SkillItem = ({ skill, level, darkMode }) => (
 const Experience = () => {
   const theme = useContext(ThemeContext);
   const darkMode = theme.state.darkMode;
+  const [hovered, setHovered] = useState(false);
+  const [hoveredFront, setHoverFront] = useState(false);
+
+  const itemStyle = {
+    backgroundColor: darkMode
+      ? hovered
+        ? "transparent"
+        : "#2c2c6c"
+      : hovered
+      ? "transparent"
+      : "#47474b",
+    color: darkMode ? "white" : "black",
+    borderRadius: "2rem",
+    border: darkMode
+      ? hovered
+        ? "1px solid white"
+        : "1px solid transparent"
+      : hovered
+      ? "1px solid black"
+      : "1px solid transparent",
+  };
+  const FrontitemStyle = {
+    backgroundColor: darkMode
+      ? hoveredFront
+        ? "transparent"
+        : "#2c2c6c"
+      : hoveredFront
+      ? "transparent"
+      : "#47474b",
+    color: darkMode ? "white" : "black",
+    borderRadius: "2rem",
+    border: darkMode
+      ? hoveredFront
+        ? "1px solid white"
+        : "1px solid transparent"
+      : hoveredFront
+      ? "1px solid black"
+      : "1px solid transparent",
+  };
+
   return (
     <section id="experience">
       <h5 style={{ color: darkMode && "white" }}>What Skills I Have</h5>
@@ -32,7 +72,9 @@ const Experience = () => {
       </h2>
       <div className="container experience__container">
         <div
-          style={{ backgroundColor: darkMode && "#2c2c6c" }}
+          style={itemStyle}
+          onMouseEnter={() => setHovered(true)}
+          onMouseLeave={() => setHovered(false)}
           className="experice__frontend"
         >
           <h3 style={{ color: darkMode && "white" }}>Backend Development</h3>
@@ -56,7 +98,9 @@ const Experience = () => {
           </div>
         </div>
         <div
-          style={{ backgroundColor: darkMode && "#2c2c6c" }}
+          style={FrontitemStyle}
+          onMouseEnter={() => setHoverFront(true)}
+          onMouseLeave={() => setHoverFront(false)}
           className="experice__frontend"
         >
           <h3 style={{ color: darkMode && "white" }}>Frontend Development</h3>
