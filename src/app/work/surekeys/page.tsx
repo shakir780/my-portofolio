@@ -11,14 +11,18 @@ import property from "@/images/projects/surekeys/property.jpg";
 import costs from "@/images/projects/surekeys/costs.jpg";
 import mobile from "@/images/projects/surekeys/mobile.jpg";
 
+const description =
+  "How I designed, built and launched SureKeys solo: a rental platform for Abuja with checked listings, full move-in costs and neighbourhood communities.";
+
 export const metadata: Metadata = {
-  title: `SureKeys case study · ${site.name}`,
-  description:
-    "How I designed and built SureKeys, a rental platform for Abuja with checked listings, full move-in costs and neighbourhood communities.",
+  title: "SureKeys case study",
+  description,
+  openGraph: { title: `SureKeys case study · ${site.name}`, description, images: [{ url: cover.src, width: cover.width, height: cover.height }] },
+  twitter: { card: "summary_large_image", images: [cover.src] },
 };
 
 const facts = [
-  { label: "Role", value: "Product design & full-stack development" },
+  { label: "Role", value: "Founder · solo design & engineering" },
   { label: "Year", value: project.year },
   { label: "Platform", value: "Responsive web" },
   { label: "Stack", value: project.stack.join(", ") },
@@ -137,6 +141,14 @@ export default function SureKeysCaseStudy() {
             available before connecting anyone, which removes the &quot;sorry, it&apos;s gone&quot; trip.
           </p>
 
+          <h3>Reviews that can&apos;t be faked</h3>
+          <p>
+            Agent reviews only matter if they come from real tenants, so a review unlocks only after an
+            inspection that the tenant has confirmed took place. An agent can&apos;t fill their own profile
+            with praise, and a competitor can&apos;t bury it, because nobody can review an inspection that
+            never happened.
+          </p>
+
           <h3>Neighbourhood communities</h3>
           <p>
             Every area, from Gwarinpa and Wuse 2 to Maitama, Jabi and Lugbe, has its own community page
@@ -153,6 +165,29 @@ export default function SureKeysCaseStudy() {
           </p>
         </Section>
 
+        <Section title="Architecture">
+          <p>
+            I built SureKeys solo, so I chose a stack that one person can run in production without a
+            platform team:
+          </p>
+          <ul>
+            <li>
+              <strong>Frontend:</strong> Next.js (App Router) and Tailwind CSS, deployed on Vercel.
+            </li>
+            <li>
+              <strong>API:</strong> NestJS with MongoDB, handling listings, accounts, inspections, reviews
+              and communities.
+            </li>
+            <li>
+              <strong>Background work:</strong> BullMQ queues, so slow tasks run outside the request and
+              pages stay fast.
+            </li>
+            <li>
+              <strong>Edge:</strong> Cloudflare DNS in front of the whole platform.
+            </li>
+          </ul>
+        </Section>
+
         <Section title="Engineering decisions">
           <ul>
             <li>
@@ -163,10 +198,11 @@ export default function SureKeysCaseStudy() {
               visit.
             </li>
             <li>
-              <strong>Built to be found.</strong> Pages are rendered with the Next.js App Router, and
-              every listing and area has its own title and description. A generated sitemap covers each
-              property and community, and private routes like the dashboard, admin and API are kept out of
-              search engines.
+              <strong>Built to be found and shared.</strong> Pages are rendered with the Next.js App
+              Router, and every listing and area has its own title and description. A generated sitemap
+              covers each property and community, and private routes like the dashboard, admin and API are
+              kept out of search engines. In Nigeria rentals spread on WhatsApp, so every listing has an
+              Open Graph preview that renders properly when it&apos;s shared on WhatsApp or Facebook.
             </li>
             <li>
               <strong>Video tours without the page weight.</strong> Tours are hosted on YouTube, but
@@ -182,6 +218,11 @@ export default function SureKeysCaseStudy() {
               <strong>Mobile first.</strong> Most renters search on their phones, so on mobile the
               price and the &quot;Request this property&quot; button stay pinned to the bottom of the
               screen.
+            </li>
+            <li>
+              <strong>A faster loop for a team of one.</strong> Switching the NestJS build from ts-node to
+              the SWC compiler cut the dev server&apos;s memory use significantly, which kept local
+              development fast on a single machine.
             </li>
           </ul>
         </Section>

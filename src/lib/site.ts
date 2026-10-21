@@ -1,13 +1,14 @@
 // Single source of truth for personal details used across the site.
 export const site = {
   name: "Shakir Kamal",
-  role: "Frontend Developer",
+  role: "Full-Stack Developer",
   tagline:
-    "I build fast, accessible web apps with React and Next.js, and the Node.js APIs behind them when a project needs it.",
-  location: "Nigeria · Open to remote",
+    "I build production web apps with React, Next.js and TypeScript, and the NestJS and Node.js backends behind them.",
+  location: "Abuja, Nigeria · Open to remote",
   available: true,
-  email: "Kamalshakir@hotmail.com",
+  email: "kamalshakir2024@gmail.com",
   cv: "/shakir-kamal-cv.pdf",
+  url: "https://shakir-kamal.vercel.app",
   socials: {
     github: "https://github.com/shakir780",
     linkedin: "https://www.linkedin.com/in/shakir-kamal/",

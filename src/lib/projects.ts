@@ -20,11 +20,11 @@ export type FeaturedProject = Project & { image: StaticImageData };
 
 export const flagshipProject: FeaturedProject = {
   title: "SureKeys",
-  kind: "Product · Rental platform",
+  kind: "Founder · Rental platform",
   year: "2026",
   description:
-    "A rental platform for Abuja built around trust: checked listings with the full move-in cost upfront, video tours, inspection requests, and neighbourhood communities where residents share the real gist on light, water and security.",
-  stack: ["Next.js", "React", "Tailwind", "Framer Motion", "Vercel"],
+    "A rental platform for Abuja that I designed, built and launched solo. Checked listings with the full move-in cost upfront, video tours, inspection requests, reviews that can't be faked, and neighbourhood communities where residents share the real gist.",
+  stack: ["Next.js", "NestJS", "MongoDB", "BullMQ", "Tailwind", "Vercel", "Cloudflare"],
   live: "https://www.surekeys.ng",
   caseStudy: "/work/surekeys",
   image: surekeys,
@@ -36,7 +36,7 @@ export const featuredProjects: FeaturedProject[] = [
     kind: "Client work · Corporate site",
     description:
       "Website for an ISO-certified manufacturer of pharmaceutical and food packaging. Presents the product range, company profile and certifications to international B2B buyers.",
-    stack: ["Next.js", "React"],
+    stack: ["React", "TypeScript", "Tailwind"],
     live: "https://alwataniaplast.com/",
     image: alwataniya,
   },
