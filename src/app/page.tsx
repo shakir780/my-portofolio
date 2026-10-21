@@ -1,10 +1,12 @@
 import { Hero } from "@/components/hero";
+import { Work } from "@/components/work";
 
 export default function Home() {
   return (
     <>
       <Hero />
-      {/* Phase 2: Selected work · Phase 3: About, Experience, Stack · Phase 4: Contact */}
+      <Work />
+      {/* Phase 3: About, Experience, Stack · Phase 4: Contact */}
     </>
   );
 }
