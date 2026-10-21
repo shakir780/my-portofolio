@@ -1,9 +1,16 @@
 import Image from "next/image";
-import { ArrowUpRight } from "lucide-react";
+import Link from "next/link";
+import { ArrowRight, ArrowUpRight } from "lucide-react";
 import { Container } from "@/components/container";
 import { SectionHeading } from "@/components/section-heading";
 import { GitHubIcon } from "@/components/brand-icons";
-import { featuredProjects, moreProjects, type FeaturedProject, type Project } from "@/lib/projects";
+import {
+  featuredProjects,
+  flagshipProject,
+  moreProjects,
+  type FeaturedProject,
+  type Project,
+} from "@/lib/projects";
 
 export function Work() {
   return (
@@ -15,7 +22,9 @@ export function Work() {
           description="Client sites and full-stack products, from the database to the UI."
         />
 
-        <div className="grid gap-x-8 gap-y-14 md:grid-cols-2">
+        <FlagshipCard project={flagshipProject} />
+
+        <div className="mt-20 grid gap-x-8 gap-y-14 md:grid-cols-2">
           {featuredProjects.map((project) => (
             <ProjectCard key={project.title} project={project} />
           ))}
@@ -29,6 +38,56 @@ export function Work() {
         </ul>
       </Container>
     </section>
+  );
+}
+
+function FlagshipCard({ project }: { project: FeaturedProject }) {
+  const href = project.caseStudy ?? project.live!;
+
+  return (
+    <article className="group grid items-center gap-8 md:grid-cols-[3fr_2fr] md:gap-10">
+      <Link
+        href={href}
+        tabIndex={-1}
+        aria-hidden="true"
+        className="block overflow-hidden rounded-xl border border-border bg-surface"
+      >
+        <Image
+          src={project.image}
+          alt=""
+          placeholder="blur"
+          priority
+          sizes="(min-width: 768px) 600px, 100vw"
+          className="aspect-video w-full object-cover object-top transition-transform duration-500 group-hover:scale-[1.02] motion-reduce:transition-none"
+        />
+      </Link>
+
+      <div>
+        <p className="font-mono text-xs text-muted">
+          {project.kind}
+          {project.year && ` · ${project.year}`}
+        </p>
+        <h3 className="mt-1.5 text-2xl font-semibold tracking-tight">
+          <Link href={href} className="hover:text-accent">
+            {project.title}
+          </Link>
+        </h3>
+        <p className="mt-3 leading-relaxed text-muted text-pretty">{project.description}</p>
+        <StackList stack={project.stack} />
+        <div className="mt-6 flex flex-wrap items-center gap-x-5 gap-y-3 text-sm font-medium">
+          {project.caseStudy && (
+            <Link
+              href={project.caseStudy}
+              className="group/cta inline-flex items-center gap-2 rounded-full bg-accent px-4 py-2 text-accent-fg transition-opacity hover:opacity-90"
+            >
+              Read case study
+              <ArrowRight className="size-4 transition-transform group-hover/cta:translate-x-0.5" />
+            </Link>
+          )}
+          <ProjectLinks project={project} />
+        </div>
+      </div>
+    </article>
   );
 }
 

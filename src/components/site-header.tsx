@@ -12,7 +12,7 @@ export function SiteHeader() {
   return (
     <header className="sticky top-0 z-50 border-b border-border/60 bg-bg/80 backdrop-blur-md">
       <Container className="flex h-16 items-center justify-between">
-        <a href="#top" className="font-semibold tracking-tight" onClick={() => setOpen(false)}>
+        <a href="/" className="font-semibold tracking-tight" onClick={() => setOpen(false)}>
           {site.name}
         </a>
 

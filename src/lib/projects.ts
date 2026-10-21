@@ -1,4 +1,5 @@
 import type { StaticImageData } from "next/image";
+import surekeys from "@/images/projects/surekeys/cover.jpg";
 import alwataniya from "@/images/projects/cover/alwataniya-plast.jpg";
 import marlian from "@/images/projects/cover/marlian.jpg";
 import shaksEstate from "@/images/projects/cover/shaks-estate.jpg";
@@ -12,9 +13,22 @@ export type Project = {
   stack: string[];
   live?: string;
   code?: string;
+  caseStudy?: string;
 };
 
 export type FeaturedProject = Project & { image: StaticImageData };
+
+export const flagshipProject: FeaturedProject = {
+  title: "SureKeys",
+  kind: "Product · Rental platform",
+  year: "2026",
+  description:
+    "A rental platform for Abuja built around trust: checked listings with the full move-in cost upfront, video tours, inspection requests, and neighbourhood communities where residents share the real gist on light, water and security.",
+  stack: ["Next.js", "React", "Tailwind", "Framer Motion", "Vercel"],
+  live: "https://www.surekeys.ng",
+  caseStudy: "/work/surekeys",
+  image: surekeys,
+};
 
 export const featuredProjects: FeaturedProject[] = [
   {
