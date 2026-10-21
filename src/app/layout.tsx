@@ -7,10 +7,14 @@ import { SiteFooter } from "@/components/site-footer";
 import { site } from "@/lib/site";
 import "./globals.css";
 
+const title = `${site.name} · ${site.role}`;
+
 export const metadata: Metadata = {
-  title: `${site.name} · ${site.role}`,
+  metadataBase: new URL(site.url),
+  title: { default: title, template: `%s · ${site.name}` },
   description: site.tagline,
-  icons: { icon: "/favicon.png" },
+  openGraph: { type: "website", url: "/", siteName: site.name, title, description: site.tagline },
+  twitter: { card: "summary_large_image", title, description: site.tagline },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

@@ -1,8 +1,6 @@
 import type { StaticImageData } from "next/image";
 import surekeys from "@/images/projects/surekeys/cover.jpg";
 import alwataniya from "@/images/projects/cover/alwataniya-plast.jpg";
-import marlian from "@/images/projects/cover/marlian.jpg";
-import shaksEstate from "@/images/projects/cover/shaks-estate.jpg";
 import salesso from "@/images/projects/cover/salesso-dashboard.jpg";
 
 export type Project = {
@@ -39,28 +37,6 @@ export const featuredProjects: FeaturedProject[] = [
     stack: ["React", "TypeScript", "Tailwind"],
     live: "https://alwataniaplast.com/",
     image: alwataniya,
-  },
-  {
-    title: "Marlian Clothing",
-    kind: "Full-stack e-commerce",
-    year: "2024",
-    description:
-      "Online store for African fashion with product browsing, a persistent cart, Stripe checkout and JWT-based accounts, backed by a REST API I wrote in Express.",
-    stack: ["React", "TypeScript", "Redux Toolkit", "Tailwind", "Express", "MongoDB", "Stripe"],
-    live: "https://marlian-clothing.onrender.com",
-    code: "https://github.com/shakir780/Marlian-Remake-",
-    image: marlian,
-  },
-  {
-    title: "Shaks Estate",
-    kind: "Full-stack marketplace",
-    year: "2023",
-    description:
-      "Real estate marketplace where users sign up, list properties with photo uploads and search listings. Express and MongoDB API with JWT auth; images stored in Firebase.",
-    stack: ["React", "TypeScript", "Redux Toolkit", "Tailwind", "Express", "MongoDB", "Firebase"],
-    // Live demo currently renders a blank page; re-add `live` once it is fixed.
-    code: "https://github.com/shakir780/Shaks-Estate",
-    image: shaksEstate,
   },
   {
     title: "Salesso Dashboard",

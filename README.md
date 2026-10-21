@@ -1,70 +1,40 @@
-# Getting Started with Create React App
+# Shakir Kamal — Portfolio
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Personal portfolio and case studies, live at [shakir-kamal.vercel.app](https://shakir-kamal.vercel.app).
 
-## Available Scripts
+Built with Next.js 16 (App Router), React 19, TypeScript and Tailwind CSS 4.
 
-In the project directory, you can run:
+## Getting started
 
-### `npm start`
+```bash
+npm install
+npm run dev        # http://localhost:3000
+npm run build      # production build
+npm run typecheck
+```
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Editing content
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+Almost everything on the site is data, so most updates don't touch components:
 
-### `npm test`
+| What | Where |
+| --- | --- |
+| Name, role, tagline, email, links, availability | `src/lib/site.ts` |
+| Projects and the flagship card | `src/lib/projects.ts` |
+| About, experience and stack | `src/lib/profile.ts` |
+| SureKeys case study | `src/app/work/surekeys/page.tsx` |
+| CV download | `public/shakir-kamal-cv.pdf` |
+| Colours (light and dark) | tokens at the top of `src/app/globals.css` |
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Set `available: false` in `site.ts` to hide the "Currently taking on new roles" note.
 
-### `npm run build`
+## Contact form
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+The form sends email through [Resend](https://resend.com) from a server action
+(`src/app/actions/contact.ts`). Copy `.env.example` to `.env.local` and set
+`RESEND_API_KEY`, and add the same variable in the Vercel project settings for production.
+Without a key, the form shows visitors your email address instead.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+With Resend's shared `onboarding@resend.dev` sender, mail can only go to the email address of
+your Resend account. To send from your own domain, verify it in Resend and set
+`CONTACT_FROM_EMAIL`.
