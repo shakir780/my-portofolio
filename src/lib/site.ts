@@ -7,6 +7,7 @@ export const site = {
   location: "Abuja, Nigeria · Open to remote",
   available: true,
   email: "kamalshakir2024@gmail.com",
+  phone: { display: "+234 912 996 9498", href: "+2349129969498" },
   cv: "/shakir-kamal-cv.pdf",
   url: "https://shakir-kamal.vercel.app",
   socials: {

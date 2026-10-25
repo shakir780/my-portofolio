@@ -1,5 +1,6 @@
 import { Container } from "@/components/container";
 import { SectionHeading } from "@/components/section-heading";
+import { Stagger, StaggerItem } from "@/components/motion";
 import { about } from "@/lib/profile";
 
 export function About() {
@@ -9,20 +10,22 @@ export function About() {
         <SectionHeading eyebrow="About" title="A bit about me" />
 
         <div>
-          <div className="space-y-5 text-lg leading-relaxed text-muted text-pretty">
+          <Stagger className="space-y-5 text-lg leading-relaxed text-muted text-pretty" stagger={0.12}>
             {about.paragraphs.map((paragraph) => (
-              <p key={paragraph}>{paragraph}</p>
+              <StaggerItem key={paragraph}>
+                <p>{paragraph}</p>
+              </StaggerItem>
             ))}
-          </div>
+          </Stagger>
 
-          <dl className="mt-10 grid gap-6 border-t border-border pt-8 sm:grid-cols-3">
+          <Stagger as="dl" className="mt-10 grid gap-6 border-t border-border pt-8 sm:grid-cols-3">
             {about.facts.map((fact) => (
-              <div key={fact.label}>
+              <StaggerItem key={fact.label}>
                 <dt className="font-mono text-xs text-muted">{fact.label}</dt>
                 <dd className="mt-1.5 text-sm leading-relaxed">{fact.value}</dd>
-              </div>
+              </StaggerItem>
             ))}
-          </dl>
+          </Stagger>
         </div>
       </Container>
     </section>

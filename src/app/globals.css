@@ -55,3 +55,15 @@ body {
     scroll-behavior: auto;
   }
 }
+
+/* If JavaScript never runs, don't leave the loading screen covering the site. */
+.loader-failsafe {
+  animation: loader-failsafe 0s linear 6s forwards;
+}
+
+@keyframes loader-failsafe {
+  to {
+    visibility: hidden;
+    pointer-events: none;
+  }
+}

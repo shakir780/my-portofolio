@@ -4,6 +4,8 @@ import { GeistMono } from "geist/font/mono";
 import { ThemeProvider } from "next-themes";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
+import { MotionProvider } from "@/components/motion";
+import { IntroGate } from "@/components/loader";
 import { site } from "@/lib/site";
 import "./globals.css";
 
@@ -22,9 +24,13 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="en" suppressHydrationWarning>
       <body className={`${GeistSans.variable} ${GeistMono.variable} font-sans`}>
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
-          <SiteHeader />
-          <main>{children}</main>
-          <SiteFooter />
+          <MotionProvider>
+            <IntroGate>
+              <SiteHeader />
+              <main>{children}</main>
+              <SiteFooter />
+            </IntroGate>
+          </MotionProvider>
         </ThemeProvider>
       </body>
     </html>

@@ -3,6 +3,7 @@ import Image, { type StaticImageData } from "next/image";
 import Link from "next/link";
 import { ArrowLeft, ArrowUpRight } from "lucide-react";
 import { Container } from "@/components/container";
+import { MaskedLine, Reveal, ScrollProgress, Stagger, StaggerItem } from "@/components/motion";
 import { flagshipProject as project } from "@/lib/projects";
 import { site } from "@/lib/site";
 import cover from "@/images/projects/surekeys/cover.jpg";
@@ -31,6 +32,7 @@ const facts = [
 export default function SureKeysCaseStudy() {
   return (
     <article className="pt-12 pb-24 sm:pt-16">
+      <ScrollProgress />
       <Container>
         <Link
           href="/#work"
@@ -41,32 +43,45 @@ export default function SureKeysCaseStudy() {
         </Link>
 
         <header className="mt-10 max-w-3xl">
-          <p className="font-mono text-xs tracking-wider text-accent uppercase">Case study</p>
-          <h1 className="mt-3 text-4xl font-semibold tracking-tight sm:text-5xl">SureKeys</h1>
-          <p className="mt-5 text-xl leading-relaxed text-muted text-pretty">
-            A rental platform that puts trust back into finding a home in Abuja: checked listings with
-            the full cost of moving in, video tours, and neighbourhood communities where residents share
-            what living there is really like.
-          </p>
-          <a
-            href={project.live}
-            target="_blank"
-            rel="noreferrer"
-            className="mt-8 inline-flex items-center gap-2 rounded-full bg-accent px-5 py-2.5 text-sm font-medium text-accent-fg transition-opacity hover:opacity-90"
-          >
-            Visit surekeys.ng
-            <ArrowUpRight className="size-4" />
-          </a>
+          <MaskedLine className="font-mono text-xs tracking-wider text-accent uppercase">Case study</MaskedLine>
+          <h1 className="mt-3 text-4xl font-semibold tracking-tight sm:text-5xl">
+            <MaskedLine delay={0.1}>SureKeys</MaskedLine>
+          </h1>
+          <Stagger onMount delay={0.3} stagger={0.1}>
+            <StaggerItem>
+              <p className="mt-5 text-xl leading-relaxed text-muted text-pretty">
+                A rental platform that puts trust back into finding a home in Abuja: checked listings with
+                the full cost of moving in, video tours, and neighbourhood communities where residents
+                share what living there is really like.
+              </p>
+            </StaggerItem>
+            <StaggerItem>
+              <a
+                href={project.live}
+                target="_blank"
+                rel="noreferrer"
+                className="mt-8 inline-flex items-center gap-2 rounded-full bg-accent px-5 py-2.5 text-sm font-medium text-accent-fg transition-[opacity,transform] hover:opacity-90 active:scale-[0.97]"
+              >
+                Visit surekeys.ng
+                <ArrowUpRight className="size-4" />
+              </a>
+            </StaggerItem>
+          </Stagger>
         </header>
 
-        <dl className="mt-14 grid gap-6 border-y border-border py-8 sm:grid-cols-2 lg:grid-cols-4">
+        <Stagger
+          as="dl"
+          onMount
+          delay={0.5}
+          className="mt-14 grid gap-6 border-y border-border py-8 sm:grid-cols-2 lg:grid-cols-4"
+        >
           {facts.map((fact) => (
-            <div key={fact.label}>
+            <StaggerItem key={fact.label}>
               <dt className="font-mono text-xs text-muted">{fact.label}</dt>
               <dd className="mt-1.5 text-sm leading-relaxed">{fact.value}</dd>
-            </div>
+            </StaggerItem>
           ))}
-        </dl>
+        </Stagger>
 
         <Figure image={cover} alt="SureKeys homepage with area search and a neighbourhood feed" priority />
 
@@ -264,12 +279,12 @@ export default function SureKeysCaseStudy() {
 
 function Section({ title, children }: { title?: string; children: React.ReactNode }) {
   return (
-    <section className="mt-16 max-w-2xl">
+    <Reveal as="section" className="mt-16 max-w-2xl">
       {title && <h2 className="mb-5 text-2xl font-semibold tracking-tight">{title}</h2>}
       <div className="space-y-4 leading-relaxed text-muted text-pretty [&_a]:text-fg [&_a]:underline [&_a]:underline-offset-4 [&_a:hover]:text-accent [&_em]:text-fg [&_h3]:mt-10 [&_h3]:text-lg [&_h3]:font-semibold [&_h3]:text-fg [&_h3:first-child]:mt-0 [&_li]:pl-1 [&_strong]:font-medium [&_strong]:text-fg [&_ul]:list-disc [&_ul]:space-y-3 [&_ul]:pl-5">
         {children}
       </div>
-    </section>
+    </Reveal>
   );
 }
 
@@ -285,7 +300,7 @@ function Figure({
   flush?: boolean;
 }) {
   return (
-    <figure className={flush ? "" : "mt-10"}>
+    <Reveal as="figure" className={flush ? "" : "mt-10"}>
       <Image
         src={image}
         alt={alt}
@@ -294,6 +309,6 @@ function Figure({
         sizes="(min-width: 1024px) 976px, 100vw"
         className="w-full rounded-xl border border-border"
       />
-    </figure>
+    </Reveal>
   );
 }

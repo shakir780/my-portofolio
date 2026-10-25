@@ -2,6 +2,8 @@ import type { StaticImageData } from "next/image";
 import surekeys from "@/images/projects/surekeys/cover.jpg";
 import alwataniya from "@/images/projects/cover/alwataniya-plast.jpg";
 import salesso from "@/images/projects/cover/salesso-dashboard.jpg";
+import washville from "@/images/projects/cover/washville.jpg";
+import speedyTow from "@/images/projects/cover/speedy-tow.jpg";
 
 export type Project = {
   title: string;
@@ -28,7 +30,7 @@ export const flagshipProject: FeaturedProject = {
   image: surekeys,
 };
 
-export const featuredProjects: FeaturedProject[] = [
+export const projects: FeaturedProject[] = [
   {
     title: "Al Watania Plast",
     kind: "Client work · Corporate site",
@@ -37,6 +39,28 @@ export const featuredProjects: FeaturedProject[] = [
     stack: ["React", "TypeScript", "Tailwind"],
     live: "https://alwataniaplast.com/",
     image: alwataniya,
+  },
+  {
+    title: "WashVille",
+    kind: "Business website",
+    year: "2024",
+    description:
+      "Marketing site for a laundry and dry-cleaning service, built around one goal: getting visitors to schedule a pickup. Covers services, pricing and testimonials.",
+    stack: ["Next.js", "TypeScript", "Tailwind", "Framer Motion"],
+    live: "https://washvillee.vercel.app/",
+    code: "https://github.com/shakir780/washville",
+    image: washville,
+  },
+  {
+    title: "Speedy Tow",
+    kind: "Business website",
+    year: "2024",
+    description:
+      "Website for a 24/7 roadside assistance and towing company, with a bold hero, services and team pages, and a clear call to order a tow.",
+    stack: ["Next.js", "TypeScript", "Tailwind", "Framer Motion"],
+    live: "https://speedy-tow.vercel.app/",
+    code: "https://github.com/shakir780/towingCompany",
+    image: speedyTow,
   },
   {
     title: "Salesso Dashboard",
@@ -48,26 +72,5 @@ export const featuredProjects: FeaturedProject[] = [
     live: "https://salesso-dashboard.vercel.app/",
     code: "https://github.com/shakir780/PersonalDashboard",
     image: salesso,
-  },
-];
-
-export const moreProjects: Project[] = [
-  {
-    title: "WashVille",
-    kind: "Laundry service site",
-    year: "2024",
-    description: "Marketing site for a laundry and dry-cleaning service.",
-    stack: ["Next.js", "TypeScript", "Tailwind", "Framer Motion"],
-    live: "https://washvillee.vercel.app/",
-    code: "https://github.com/shakir780/washville",
-  },
-  {
-    title: "Speedy Tow",
-    kind: "Towing company site",
-    year: "2024",
-    description: "Marketing site for a roadside assistance and towing company.",
-    stack: ["Next.js", "TypeScript", "Tailwind", "Framer Motion"],
-    live: "https://speedy-tow.vercel.app/",
-    code: "https://github.com/shakir780/towingCompany",
   },
 ];
